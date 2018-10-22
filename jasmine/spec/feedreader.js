@@ -31,7 +31,7 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-        it('url are defined',function(){         
+        it('urls and names are defined',function(){         
             for(let feed of allFeeds){
                 expect(feed).toBeDefined();             //checks allfeeds element is not empty  
                 expect(feed.name).toBeDefined();        //checks name to be defined
@@ -54,9 +54,9 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-describe('Menu is', function(){
+    describe('The Menu ', function(){
     var menuElement=document.getElementById('menu'),menuIcon = document.querySelector('.menu-icon-link');
-    it('hidden', function(){
+    it('is hidden', function(){
         var hidden;
         if(menuElement.className=='menu-hidden'){
             hidden=true;
@@ -71,7 +71,7 @@ describe('Menu is', function(){
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-    it('working',function(){
+    it('is working',function(){
         menuIcon.click();
         expect(menuElement.className).not.toContain("menu-hidden");
         menuIcon.click();
@@ -79,7 +79,7 @@ describe('Menu is', function(){
             expect(menuElement.className).toContain('menu-hidden');
         }                                                                     //checks for working of menu button
     });
-});    
+    });    
         /* TODO: Write a new test suite named "Initial Entries" */
 
         /* TODO: Write a test that ensures when the loadFeed
@@ -88,6 +88,19 @@ describe('Menu is', function(){
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+    describe("Initial Entries", function(){
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+            done();
+            });
+        });
+    
+        it("has atleast 1 entry when load feed is called", function(done){
+            var entries = document.querySelector(".feed").getElementsByClassName("entry").length;
+            expect(entries).toBeGreaterThan(0);
+            done();
+        });                              // add a check for .entry element
+    });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
@@ -95,4 +108,8 @@ describe('Menu is', function(){
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+    
+    describe("New Feed Selection", function(){
+            
+    });
 }());
