@@ -54,14 +54,33 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+describe('Menu is', function(){
+    var menuElement=document.getElementById('menu'),menuIcon = document.querySelector('.menu-icon-link');
+    it('hidden', function(){
+        var hidden;
+        if(menuElement.className=='menu-hidden'){
+            hidden=true;
+        }
+        expect(hidden).toBe(true);          //checks for default status of menu
+    });
+
+
 
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-
-    /* TODO: Write a new test suite named "Initial Entries" */
+    it('working',function(){
+        menuIcon.click();
+        expect(menuElement.className).not.toContain("menu-hidden");
+        menuIcon.click();
+        {
+            expect(menuElement.className).toContain('menu-hidden');
+        }                                                                     //checks for working of menu button
+    });
+});    
+        /* TODO: Write a new test suite named "Initial Entries" */
 
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
