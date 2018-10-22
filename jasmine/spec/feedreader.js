@@ -110,6 +110,21 @@ $(function() {
          */
     
     describe("New Feed Selection", function(){
-            
+        var initialFeed;
+        beforeEach(function(done) {
+          loadFeed(0, function() {
+            initialFeed = document.querySelector(".feed").innerHTML;
+    
+            loadFeed(1, function() {
+              done();
+            });
+          });
+        });
+
+        it("changes its loaded content", function(done) {
+            var newFeed = document.querySelector(".feed").innerHTML;
+            expect(initialFeed).not.toBe(newFeed);
+            done();
+          });                   // checks whether the feed actually changes
     });
 }());
